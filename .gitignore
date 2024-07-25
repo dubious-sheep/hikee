@@ -1,5 +1,5 @@
 .DS_Store
-./questions/.DS_Store
+./*/.DS_Store
 *.out
 *.a
 .vscode
