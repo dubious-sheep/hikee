@@ -1,19 +1,28 @@
 import sys
+# v = ['a','e','i','o','u']
+def csum(ss):
+    return sum('aeiou'.count(x) for x in ss)
+
 for _ in range(int(input())):
-    n = input()
-    ln = len(n)
-    if ln >= (10 ** 200000) or ln < 1:
-        sys.exit(1) 
+    s = input()
+    if len(s) < 3 and len(s) > 1000:
+        sys.exit(1)
 
-    i = 1
-    z = 0
-    l = int(n[-1])
-    while l == 9:
-        i += 1
-        z += 1
-        if i <= ln:
-            l = int(n[-i])
-        else: 
-            l = 0 
+    flag = 0
+    #* option 1
+    # for i in range(len(s)-2):
+    #     if s[i] in v and s[i+1] in v and s[i+2] in v:
+    #         flag = 1
 
-    print(n[0:-i] + str(l + 1) + '0'*z)
+    # ans = "happy" if flag == 1 else "sad"
+    # print(ans)
+
+    #* option 2 using count
+    for i in range(len(s)-2):
+        if csum(s[i:i+3]) == 3:
+            flag = 1
+    print("happy" if flag == 1 else "sad")
+
+
+#?  editorialist's interesting approach
+#   print('Happy' if sum(count(s[i:i+3]) for i in range(len(s)-2)) > 0 else 'Sad')
