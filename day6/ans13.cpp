@@ -13,14 +13,16 @@ void runTests()
     for (auto &i : b)
         cin >> i;
 
-    int ans = 0;
-    for (int i = 1; i < n; i++)
+    auto max_a = max_element(a.begin(), a.end());
+    int ans = distance(a.begin(), max_a);
+
+    if (count(a.begin(), a.end(), *max_a) > 1)
     {
-        if (a[i] > a[ans])
-            ans = i;
-        else if (a[i] == a[ans] && b[i] > b[ans])
-            ans = i;
+        for (int i = 0; i < n; i++)
+            if (a[i] == a[ans] && b[i] > b[ans])
+                ans = i;
     }
+
     cout << ans + 1 << '\n';
 
     // * alternate using vectors
@@ -40,7 +42,20 @@ void runTests()
     // auto max_b = max_element(b_value.begin(), b_value.end());
     // cout << ans[distance(b_value.begin(), max_b)] + 1 << '\n';
 
-    // ? complexity for both are O(n) ?
+    // * editorialist's approach
+    // int ans = 0;
+    // for (int i = 1; i < n; i++)
+    // {
+    //     if (a[i] > a[ans])
+    //         ans = i;
+    //     else if (a[i] == a[ans] && b[i] > b[ans])
+    //         ans = i;
+    // }
+    // cout << ans + 1 << '\n';
+
+    // ! first approach is the fastest, 0.06s; other 2 are 0.07s
+    // ? complexity for all are O(n) ?
+    // * python computes the slowest; c++ ftw
 }
 
 int main()
